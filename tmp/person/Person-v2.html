@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拟态风格个人主页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 滚动文字动画 */
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .scroll-text {
+            animation: scrollText 20s linear infinite;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        /* 卡片样式（采用拟态风格） */
+        .card {
+            background: linear-gradient(145deg, #f8f8f8, #e8e8e8);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .card.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            background: linear-gradient(145deg, #f8f8f8, #e8e8e8);
+            border-radius: 15px;
+            z-index: -2;
+        }
+
+        /* 头像样式 */
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 技能标签 */
+        .skill-tag {
+            background: linear-gradient(145deg, #e0e0e0, #f0f0f0);
+            border: 1px solid #d0d0d0;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            margin: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+        }
+
+        /* Dark mode 样式覆盖 */
+        .dark body {
+            background: #1a1a1a;
+        }
+
+        .dark .card {
+            background: linear-gradient(145deg, #2d2d2d, #1f1f1f);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .dark .card::before {
+            background: linear-gradient(145deg, #242424, #1a1a1a);
+        }
+
+        .dark .card::after {
+            background: linear-gradient(145deg, #2d2d2d, #1f1f1f);
+        }
+
+        .dark .skill-tag {
+            background: linear-gradient(145deg, #333, #444);
+            border: 1px solid #555;
+            color: #eee;
+        }
+
+        /* 固定位置的暗黑模式切换按钮 */
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 50;
+            cursor: pointer;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200">
+    <!-- Dark Mode Toggle Button（小灯泡图标） -->
+    <div id="darkToggle" class="toggle-btn">💡</div>
+
+    <!-- 滚动容器：启用垂直捕捉效果，每个 section 占据全屏 -->
+    <div class="snap-y snap-mandatory overflow-y-scroll h-screen">
+        <!-- 卡片1：个人信息 -->
+        <section class="snap-start min-h-screen flex flex-col items-center justify-center p-6">
+            <div class="card w-full max-w-2xl mx-auto">
+                <div class="text-center mb-8">
+                    <img src="https://via.placeholder.com/150" alt="头像" class="profile-img mx-auto mb-4">
+                    <h1 class="text-3xl font-bold">张三</h1>
+                    <p class="text-lg">前端开发工程师</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 卡片2：关于我 -->
+        <section class="snap-start min-h-screen flex items-center justify-center p-6">
+            <div class="card w-full max-w-2xl mx-auto">
+                <h2 class="text-2xl font-bold mb-5">关于我</h2>
+                <p class="mb-4">
+                    我是一名前端开发工程师，专注于使用最新的技术和工具来构建高性能、可访问的Web应用程序。
+                </p>
+                <p class="mb-4">
+                    我热爱学习新技术，并不断探索如何将它们应用到实际项目中。
+                </p>
+                <p>
+                    在业余时间，我喜欢阅读技术书籍和文章，参加技术会议，并与同行交流。
+                </p>
+            </div>
+        </section>
+
+        <!-- 卡片3：技能 -->
+        <section class="snap-start min-h-screen flex items-center justify-center p-6">
+            <div class="card w-full max-w-2xl mx-auto">
+                <h2 class="text-2xl font-bold mb-5">技能</h2>
+                <div class="flex flex-wrap justify-center">
+                    <span class="skill-tag bg-blue-100 text-blue-800">HTML</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">CSS</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">JavaScript</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">React</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">Vue</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">Tailwind CSS</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">Node.js</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">Git</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 卡片4：一言 -->
+        <section class="snap-start min-h-screen flex items-center justify-center p-6">
+            <div class="card w-full max-w-2xl mx-auto">
+                <h2 class="text-2xl font-bold mb-5">一言</h2>
+                <div class="relative h-12 overflow-hidden">
+                    <div class="scroll-text text-center text-lg">
+                        生活中最重要的事情不是胜利，而是斗争。不是已经克服的困难，而是不断克服困难的过程。 —— 奥古斯特·罗丹
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Dark mode 切换：点击灯泡图标，切换 <html> 上的 dark 类
+        const darkToggle = document.getElementById('darkToggle')
+        darkToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark')
+        })
+
+        // 利用 IntersectionObserver 为卡片添加淡入动画效果
+        const cards = document.querySelectorAll('.card')
+        const observerOptions = {
+            threshold: 0.3
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in')
+                    observer.unobserve(entry.target)
+                }
+            })
+        }, observerOptions)
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拟态风格个人主页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .scroll-text {
+            animation: scrollText 20s linear infinite;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #f8f8f8, #e8e8e8);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            background: linear-gradient(145deg, #f8f8f8, #e8e8e8);
+            border-radius: 15px;
+            z-index: -2;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-tag {
+            background: linear-gradient(145deg, #e0e0e0, #f0f0f0);
+            border: 1px solid #d0d0d0;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            margin: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <div class="min-h-screen flex items-center justify-center p-6">
+        <div class="max-w-2xl w-full">
+            <!-- 头像和标题 -->
+            <div class="text-center mb-10">
+                <img src="https://via.placeholder.com/150" alt="头像" class="profile-img mx-auto mb-6">
+                <h1 class="text-3xl font-bold text-gray-800">张三</h1>
+                <p class="text-gray-600">前端开发工程师</p>
+            </div>
+
+            <!-- 拟态卡片 -->
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-5 text-gray-800">关于我</h2>
+                <p class="text-gray-600 mb-4">
+                    我是一名前端开发工程师，专注于使用最新的技术和工具来构建高性能、可访问的Web应用程序。
+                </p>
+                <p class="text-gray-600 mb-4">
+                    我热爱学习新技术，并不断探索如何将它们应用到实际项目中。
+                </p>
+                <p class="text-gray-600 mb-4">
+                    在业余时间，我喜欢阅读技术书籍和文章，参加技术会议，并与同行交流。
+                </p>
+            </div>
+
+            <!-- 技能卡片 -->
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-5 text-gray-800">技能</h2>
+                <div class="flex flex-wrap justify-center">
+                    <span class="skill-tag bg-blue-100 text-blue-800">HTML</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">CSS</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">JavaScript</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">React</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">Vue</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">Tailwind CSS</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">Node.js</span>
+                    <span class="skill-tag bg-blue-100 text-blue-800">Git</span>
+                </div>
+            </div>
+
+            <!-- 滚动文案 -->
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-5 text-gray-800">一言</h2>
+                <div class="relative h-12">
+                    <div class="scroll-text text-center text-gray-600 text-lg">
+                        生活中最重要的事情不是胜利，而是斗争。不是已经克服的困难，而是不断克服困难的过程。 —— 奥古斯特·罗丹
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
