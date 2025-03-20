@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现代化滚动条设计</title>
+    <style>
+        /* 滚动条整体样式 */
+        ::-webkit-scrollbar {
+            width: 10px;
+            /* 垂直滚动条宽度 */
+            height: 10px;
+            /* 水平滚动条高度 */
+        }
+
+        /* 滚动条轨道样式 */
+        ::-webkit-scrollbar-track {
+            background: rgba(16, 31, 28, 0.1);
+            border-radius: 10px;
+        }
+
+        /* 滚动条滑块样式 */
+        ::-webkit-scrollbar-thumb {
+            background: rgba(144, 147, 153, 0.5);
+            border-radius: 10px;
+            background-clip: padding-box;
+            min-height: 28px;
+            transition: background-color 0.3s;
+        }
+
+        /* 滚动条滑块悬停样式 */
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(144, 147, 153, 0.8);
+        }
+
+        /* 滚动条按钮样式（可选） */
+        ::-webkit-scrollbar-button {
+            display: none;
+            /* 隐藏默认按钮 */
+        }
+
+        /* 测试内容区域 */
+        .scroll-container {
+            width: 500px;
+            height: 400px;
+            overflow: auto;
+            margin: 50px auto;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+
+        .content {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-container">
+        <div class="content"></div>
+    </div>
+</body>
+
+</html>
